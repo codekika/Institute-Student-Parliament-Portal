@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" href="css/bootstrap.min2.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Slab" />
+</head>
+<body style="background: url('dark_embroidery.png') repeat;">
+	<div class="row" style="background: url('dark_embroidery.png') repeat;">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-2">
+			<img src="iitbhu_logo.png" style="height:150px	">
+		</div>
+		<div class="col-sm-6">
+			<h1 style="color: #FFFFFF;font-family: 'Josefin Slab'"> <center>Institute Students' Parliament Portal</center></h1>
+		</div>
+	</div>
+	<nav class="navbar navbar-inverse" style:	>
+    <div class="container-fluid">
+		<ul class="nav navbar-nav">
+		{% if user.is_authenticated %}
+        	<li><a href="{% url 'logout' %}">LOGOUT</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">LOGIN</a></li>
+            <li><a href="{% url 'signup' %}">SIGNUP</a></li>
+        {% endif %}
+		  <li><a href="#">Home</a></li>
+		  <li><a href="#">Sign Up</a></li>
+		  <li><a href="#">Grievances</a></li>
+		  <li><a href="#">Polls</a></li>
+		  <li><a href="#">Feedbacks</a></li>
+		  <li><a href="#">Suggestions</a></li>
+		  <li><a href="#">Elections</a></li>                  
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+		  <li class="dropdown">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicons glyphicons-user"></span>karthik.kumar.cse15
+		    <span class="caret"></span></a>
+		    <ul class="dropdown-menu">
+		      <li><a href="#">Profile</a></li>
+		      <li><a href="#">Settings</a></li>
+		      <li><a href="#">About Us</a></li>
+		      <li><a href="#">Logout</a></li>
+		    </ul>
+		  </li>
+		</ul>
+	</div>
+</nav>
+<div class="row">
+	<div class="col-sm-1">
+	</div>
+	<div class="col-sm-10" >
+		<div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+  			<div class="card-block" >
+    			<h3 class="card-title" style="color: white;">Newsfeed- Unread notifications</h3>
+    			<p class="card-text" style="color: white;"><ol style="color: white;">
+    				<li>The Elections are due scheduled on 7th September,2017.--Election Committee.</li>
+    				<li>
+    					The hostels new LAN connection will be finished by 16th September.-- Web Committee.
+    				</li>	
+    			</ol>
+    			</p>
+    			<a href="#" class="btn btn-primary">Mark as read</a>
+  			</div>
+		</div>
+	</div>
+	<div class="col-sm-1"></div>
+</div>
+<br><br>
+<div class="row">
+	<div class="col-sm-1">
+	</div>
+	<div class="col-sm-10" >
+		<div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+  			<div class="card-block" >
+    			<h3 class="card-title" style="color: white;">Newsfeed-Recent Notifications.</h3>
+    			<p class="card-text" style="color: white;"><ol style="color: white;">
+    				<li>The Elections are due scheduled on 7th September,2017.--Election Committee.</li>
+    				<li>
+    					The hostels new LAN connection will be finished by 16th September.-- Web Committee.
+    				</li>	
+    			</ol>
+    			</p>
+    			<a href="#" class="btn btn-primary">Go somewhere</a>
+  			</div>
+		</div>
+	</div>
+	<div class="col-sm-1"></div>
+	<main style="padding:1%">
+		{% block content %}{% endblock %}
+	</main>
+</div>
+<div class="navbar navbar-fixed-bottom navbar-inverse">
+
+	<center>
+	<p style="color: white"> About Us<br> 
+	© 2017 | Indian Institute of Technology (Banaras Hindu University) Varanasi. All Rights Reserved. | Disclaimer<br>
+	Developed by Karthik Kumar
+	</p>
+	</center>
+</div>
+</body>
+</html>

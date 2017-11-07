@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../themes/default/default.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="../nivo-slider.css" type="text/css" media="screen" />
+</head>
+<body> 
+
+<div class="container">
+  <h2>Well</h2>
+  <div class="well">Basic Well</div>
+</div>
+<div class="jumbotron">
+<h2> Hiii</h2>
+</div>
+
+<div id="slider" class="nivoSlider">
+<img src="images/winner.jpg" data-thumb="images/toystory.jpg" alt="" />
+
+<img src="images/winner.jpg" data-thumb="images/up.jpg" alt="" title="This is an example of a caption" />
+<img src="images/winner.jpg" data-thumb="images/walle.jpg" alt="" data-transition="slideInLeft" />
+<img src="images/winner.jpg" data-thumb="images/nemo.jpg" alt="" title="#htmlcaption" />
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+<script type="text/javascript" src="jquery.nivo.slider.js"></script> 
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider();
+    });
+</script> 
+</body>
+</html>
+  

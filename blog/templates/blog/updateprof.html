@@ -1,0 +1,79 @@
+{% extends 'blog/template.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6" >
+    <div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+        <div class="card-block" >
+          <h3 class="card-title" style="color: white;"><center><u>Update Profile</u></center></h3>
+          <p class="card-text" style="color: white;"><ol style="color: white;">
+            <form action="{% url 'updatedprof' pk=user.0 %}" method="POST">{% csrf_token %}
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" class="form-control" value={{user.1}} id="fname" name="fname" readonly>
+              </div>
+              <div class="form-group">
+                <label for="sname">Second Name</label>
+                <input type="text" class="form-control" value={{user.2}} id="sname" name="sname" readonly>
+              </div>
+              <div class="form-group">
+                <label for="rno">Roll No</label>
+                <input type="number" class="form-control" value={{user.0}} id="rno" name="rno" readonly>
+              </div>
+              <div class="form-group">
+                <label for="rno">Course</label>
+                <input type="text" class="form-control" value={{user.9}} id="course" name="course" readonly>
+              </div>
+              <div class="form-group" >
+                 <label for="">Year</label>
+                  <select class="form-control" id="year" value={{user.4}} name="year" required>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="rno">Department</label>
+                <input type="textarea" class="form-control" value="{{user.5}}" id="dept" name="dept" readonly>
+              </div>
+              <div class="form-group">
+                <label for="hostel">Hostel</label>
+                <select class="form-control" id="hostel" value="{{user.6}}" name="hostel" required>
+                  <option>Dhanraj Giri Hostel</option>
+                  <option>Morvi Hostel</option>
+                  <option>CV Raman Hostel</option>
+                  <option>Rajputana Hostel</option>
+                  <option>Limbdi Hostel</option>
+                  <option>SC De Hostel</option>
+                  <option>Vivekananda Hostel</option>
+                  <option>Vishwakarma Hostel</option>
+                  <option>Gandhi Smriti Mahilla Hostel</option>
+                  <option>Vishveshwaraiyya  Hostel</option>
+                  <option>SN Bose Hostel</option>
+                  <option>Aryabhatta Hostel</option>
+                  <option>Ramanujan Hostel</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="phoneno">Phone No</label>
+                <input type="number" class="form-control" value="{{user.6}}"" id="pno" name="pno" required>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password</label>
+                <input type="password" class="form-control" value={{user.8}} id="pwd" name="pwd" required>
+              </div>
+
+              <center><button type="submit" class="btn btn-primary">Submit</button></center>
+          </form> 
+          </p>
+        </div>
+    </div>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "administer/template.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+      <center>
+        <div class="card-block" >
+          <h3 class="card-title" style="color: white;"><center><u>Newsboard</u></center></h3>
+          <p style="color: white;"><center> {{messagee}}</center></p>
+          <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" href="#present">Newsboard</a></li>
+            <li><a data-toggle="tab" href="#new">Add News</a></li>
+        </ul>
+        </div>
+        </center>
+        <div class="tab-content">
+          <div id="present" class="tab-pane fade in active">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>News</th>
+                  <th>Committee</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for news in newsb %}
+                <tr>
+                  <td>{{news.2}}</td>
+                  <td>{{news.3}}</td>
+                  <td><a href="{% url 'deletenews' pk=news.1 %}" class="btn btn-primary">Delete</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+          </div>
+          <div id="new" class="tab-pane fade">
+            <form action="{% url 'addnews' %}" method="POST">{% csrf_token %}
+                  <div class="form-group">
+                    <label for="desc">News</label>
+                    <input type="text" class="form-control" id="desc" name="desc" required>
+                  </div>
+                  <label for="committee">Committee</label>
+                  <select class="form-control" id="committee" name="committee" required>
+                      <option>Finance Committee</option>
+                      <option>UG Academic Committee</option>
+                      <option>PG Academic Committee</option>
+                      <option>Hostel Committee</option>
+                      <option>Security Committee</option>
+                      <option>Web Committee</option>
+                      <option>Emergency Committee</option>
+                  </select>
+                  <center><button type="submit" class="btn btn-primary">Submit</button></center>
+                </form> 
+          </div>
+
+        </div>
+  <div class="col-sm-2"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "blog/template.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-8">
+		<div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+			<center>
+  			<div class="card-block" >
+    			<h3 class="card-title" style="color: white;"><center><u>Elections</u></center></h3>
+    			<ul class="nav nav-tabs">
+  					<li><a data-toggle="tab" href="#present">Present On-Going Elections</a></li>
+  					<li><a data-toggle="tab" href="#past">Past Elections</a></li>
+  					<li><a data-toggle="tab" href="#upcoming">Upcoming Elections</a></li>
+				</ul>
+  			</div>
+  			</center>
+  			<div class="tab-content">
+	  			<div id="present" class="tab-pane fade in active">
+	  				<table class="table table-bordered">
+					    <thead>
+					      <tr>
+					        <th>Name of the Poll</th>
+					        <th>Start Date</th>
+					        <th>End Date</th>
+					        <th>Hostel or Parliament</th>
+					        <th>Specifications</th>
+					        <th>Status</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      {% for election in cur_election %}
+					      <tr>
+					        <td>{{election.1}}</td>
+					        <td>{{election.2}}</td>
+					        <td>{{election.3}}</td>
+					        {% if election.4 %}
+					        	<td> Hostel</td>
+					        {% else %}
+					        	<td> Parliamentarian</td>
+					        {% endif  %}
+					         {% if election.4 %}
+					        	<td> {{election.5}}</td>
+					        {% else %}
+					        	<td> Part {{election.5}} </td>
+					        {% endif  %}
+					        <td><a href="{% url 'elevote' pk=election.0 %}" class="btn btn-primary">Vote</a></td>
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					</table>
+	  			</div>
+	  			<div id="past" class="tab-pane fade" >
+	  				<table class="table table-bordered">
+					    <thead>
+					      <tr>
+					        <th>Name of the Poll</th>
+					        <th>Start Time</th>
+					        <th>End Time</th>
+					        <th>Hostel or Parliament</th>
+					        <th>Specifications</th>
+					        <th>Status</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      {% for election in pas_election %}
+					      <tr>
+					        <td>{{election.1}}</td>
+					        <td>{{election.2}}</td>
+					        <td>{{election.3}}</td>
+					        {% if election.4 %}
+					        	<td> Hostel</td>
+					        {% else %}
+					        	<td> Parliamentarian</td>
+					        {% endif  %}
+					         {% if election.4 %}
+					        	<td> {{election.5}}</td>
+					        {% else %}
+					        	<td> Part {{election.5}} </td>
+					        {% endif  %}
+					        <td><a href="{% url 'eleresults' pk=election.0 %}" class="btn btn-primary">Results</a></td>
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					</table>
+	  			</div>
+				<div id="upcoming" class="tab-pane fade">
+	  				<table class="table table-bordered">
+					    <thead>
+					      <tr>
+					        <th>Name of the Poll</th>
+					        <th>Start Time</th>
+					        <th>End Time</th>
+					        <th>Hostel or Parliament</th>
+					        <th>Specifications</th>
+					        <th>Status</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      {% for election in fut_election %}
+					      <tr>
+					        <td>{{election.1}}</td>
+					        <td>{{election.2}}</td>
+					        <td>{{election.3}}</td>
+					        {% if election.4 %}
+					        	<td> Hostel</td>
+					        {% else %}
+					        	<td> Parliamentarian</td>
+					        {% endif  %}
+					         {% if election.4 %}
+					        	<td> {{election.5}}</td>
+					        {% else %}
+					        	<td> Part {{election.5}} </td>
+					        {% endif  %}
+					        <td><a href="{% url 'nominate' pk=election.0 %}" class="btn btn-primary" >Fill Nominations</a></td>
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					</table>
+	  			</div>
+	  		</div>
+	<div class="col-sm-2"></div>
+</div>
+{% endblock %}

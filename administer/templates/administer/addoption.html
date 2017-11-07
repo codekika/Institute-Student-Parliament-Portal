@@ -1,0 +1,27 @@
+{% extends 'administer/template.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6" >
+    <div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+        <div class="card-block" >
+          <h3 class="card-title" style="color: white;"><center><u>Add Option</u></center></h3>
+          <p class="card-text" style="color: white;"><ol style="color: white;">
+            <form action="{% url 'addoptions' pk=polls %}" method="POST">{% csrf_token %}
+              <div class="form-group">
+                <label for="option">Option</label>
+                <input type="text" class="form-control" id="option" name="option" required>
+              </div>
+              <center><button class="btn btn-primary">Add Option</button>
+              </center>
+          </form>
+          <center><a href="{% url 'adminpolls'  %}" class="btn btn-primary" >Finish adding the poll</a></center>
+          </p>
+        </div>
+    </div>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+{% endblock %}

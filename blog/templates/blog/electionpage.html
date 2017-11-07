@@ -1,0 +1,30 @@
+{% extends "blog/template.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-3">
+	</div>
+	<div class="col-sm-6" >
+		<div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+  			<div class="card-block" >
+    			<p class="card-text" style="color: white;"><ol style="color: white;">
+    				<form class="form" action="{% url 'polldone' pk=poll.0 %}" method="POST">{% csrf_token %}
+  						<div class="form-group">
+   							<label for=answers"">{{poll.2}}</label>
+    						{% for option in options %}
+    						<div class="radio">
+    							
+  								<label><input type="radio" name="answers" id=
+  								"answers" value={{ option.0 }} > {{ option.0 }}</label>
+							</div>
+							{% endfor %}
+  						</div>
+  						<center><button type="submit" class="btn btn-primary">Submit Answer</button></center>
+					</form>	
+    			</p>
+  			</div>
+		</div>
+	</div>
+	<div class="col-sm-3"></div>
+</div>
+{% endblock %}

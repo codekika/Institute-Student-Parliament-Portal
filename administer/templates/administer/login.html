@@ -1,0 +1,31 @@
+{% extends 'administer/template.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6" >
+    <div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+        <div class="card-block" >
+          <h3 class="card-title" style="color: white;"><center><u>Login</u></center></h3>
+          <p style="color: white;"><center> {{messagee}}</center></p>
+          <p class="card-text" style="color: white;"><ol style="color: white;">
+            <form action="{% url 'adminlogin' %}" method="POST">{% csrf_token %}
+              <div class="form-group">
+                <label for="usr">Admin-ID</label>
+                <input type="text" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password</label>
+                <input type="password" class="form-control" id="pwd" name="pwd" required>
+              </div>
+
+              <center><button type="submit" class="btn btn-primary">Submit</button></center>
+          </form> 
+          </p>
+        </div>
+    </div>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+{% endblock %}

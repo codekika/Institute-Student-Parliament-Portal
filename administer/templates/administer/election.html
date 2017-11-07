@@ -1,0 +1,201 @@
+{% extends "administer/template.html" %}
+{% load staticfiles %}
+{% block content %}
+<script type="text/javascript"> 
+    function displayForm(c) {
+        if (c.value == "0") {
+
+            document.getElementById("ccformContainer").style.visibility = 'visible';
+            document.getElementById("paypalformContainer").style.visibility = 'hidden';
+        } else if (c.value == "1") {
+            document.getElementById("ccformContainer").style.visibility = 'hidden';
+
+            document.getElementById("paypalformContainer").style.visibility = 'visible';
+        } else {}
+    }
+
+    </script>
+
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-8">
+		<div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+			<center>
+  			<div class="card-block" >
+    			<h3 class="card-title" style="color: white;"><center><u>Elections</u></center></h3>
+    			<p style="color: white;"><center> {{messagee}}</center></p>
+    			<ul class="nav nav-tabs">
+  					<li><a data-toggle="tab" href="#present">Present On-Going Elections</a></li>
+  					<li><a data-toggle="tab" href="#past">Past Elections</a></li>
+  					<li><a data-toggle="tab" href="#upcoming">Upcoming Elections</a></li>
+  					<li><a data-toggle="tab" href="#new">Add Elections</a></li>
+				</ul>
+  			</div>
+  			</center>
+  			<div class="tab-content">
+	  			<div id="present" class="tab-pane fade in active">
+	  				<table class="table table-bordered">
+					    <thead>
+					      <tr>
+					        <th>Name of the Poll</th>
+					        <th>Start Date</th>
+					        <th>End Date</th>
+					        <th>Hostel or Parliament</th>
+					        <th>Specifications</th>
+					        <th>Status</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      {% for election in cur_election %}
+					      <tr>
+					        <td>{{election.1}}</td>
+					        <td>{{election.2}}</td>
+					        <td>{{election.3}}</td>
+					        {% if election.4 %}
+					        	<td> Hostel</td>
+					        {% else %}
+					        	<td> Parliamentarian</td>
+					        {% endif  %}
+					         {% if election.4 %}
+					        	<td> {{election.5}}</td>
+					        {% else %}
+					        	<td> Part {{election.5}} </td>
+					        {% endif  %}
+					        <td><a href="{% url 'deleteelection' pk=election.0 %}" class="btn btn-primary">Delete</a></td>
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					</table>
+	  			</div>
+	  			<div id="past" class="tab-pane fade" >
+	  				<table class="table table-bordered">
+					    <thead>
+					      <tr>
+					        <th>Name of the Poll</th>
+					        <th>Start Time</th>
+					        <th>End Time</th>
+					        <th>Hostel or Parliament</th>
+					        <th>Specifications</th>
+					        <th>Results</th>
+					        <th>Delete</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      {% for election in pas_election %}
+					      <tr>
+					        <td>{{election.1}}</td>
+					        <td>{{election.2}}</td>
+					        <td>{{election.3}}</td>
+					        {% if election.4 %}
+					        	<td> Hostel</td>
+					        {% else %}
+					        	<td> Parliamentarian</td>
+					        {% endif  %}
+					         {% if election.4 %}
+					        	<td> {{election.5}}</td>
+					        {% else %}
+					        	<td> Part {{election.5}} </td>
+					        {% endif  %}	
+					        <td><a href="{% url 'elecresults' pk=election.0 %}" class="btn btn-primary">Results</a></td>
+					        <td><a href="{% url 'deleteelection' pk=election.0 %}" class="btn btn-primary">Delete</a></td>
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					</table>
+	  			</div>
+				<div id="upcoming" class="tab-pane fade">
+	  				<table class="table table-bordered">
+					    <thead>
+					      <tr>
+					        <th>Name of the Poll</th>
+					        <th>Start Time</th>
+					        <th>End Time</th>
+					        <th>Hostel or Parliament</th>
+					        <th>Specifications</th>
+					        <th>Status</th>
+					        <th>Candidates</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      {% for election in fut_election %}
+					      <tr>
+					        <td>{{election.1}}</td>
+					        <td>{{election.2}}</td>
+					        <td>{{election.3}}</td>
+					        {% if election.4 %}
+					        	<td> Hostel</td>
+					        {% else %}
+					        	<td> Parliamentarian</td>
+					        {% endif  %}
+					         {% if election.4 %}
+					        	<td> {{election.5}}</td>
+					        {% else %}
+					        	<td> Part {{election.5}} </td>
+					        {% endif  %}
+					        <td><a href="{% url 'deleteelection' pk=election.0 %}" class="btn btn-primary" >Delete</a></td>
+					      	<td><a href="{% url 'candidates' pk=election.0 %}" class="btn btn-primary" >Candidates</a></td>
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					</table>
+	  			</div>
+	  			<div id="new" class="tab-pane fade">
+	  				<form action="{% url 'addelection' %}" method="POST">{% csrf_token %}
+		              <div class="form-group">
+		                <label for="desc">Description of the Election</label>
+		                <input type="text" class="form-control" id="desc" name="desc" required>
+		              </div>
+		              <div class="form-group">
+		                <label for="stdate">Start-Date</label>
+		                <input type="date" class="form-control" id="stdate" name="stdate" required max="2100-01-01">
+		              </div>
+		              <div class="form-group">
+		                <label for="enddate">End-Date</label>
+		                <input type="date" class="form-control" id="enddate" name="enddate" required max="2100-01-01">
+		              </div>
+		            <div class="form-group">
+				        <input value="0" type="radio" name="hop" onClick="displayForm(this)" required></input>Parliament Elections
+				        <br>
+				        <input value="1" type="radio" name="hop" onClick="displayForm(this)" required></input>Hostel Elections
+				    </div>
+  					<div style="visibility:hidden; position:relative" id="ccformContainer">
+	      				<div class="form-group">
+			                 <label for="">Year</label>
+			                  <select class="form-control" id="year" name="year" required>
+			                  <option>1</option>
+			                  <option>2</option>
+			                  <option>3</option>
+			                  <option>4</option>
+			                  <option>5</option>
+			                </select>
+		              	</div>
+    				</div>
+    				<div style="visibility:hidden;position:relative;top:-40px;margin-top:-40px" id="paypalformContainer">
+    					 <div class="form-group">
+			                <label for="hostel">Hostel</label>
+			                <select class="form-control" id="hostel" name="hostel" required>
+			                  <option>Dhanraj Giri Hostel</option>
+			                  <option>Morvi Hostel</option>
+			                  <option>CV Raman Hostel</option>
+			                  <option>Rajputana Hostel</option>
+			                  <option>Limbdi Hostel</option>
+			                  <option>SC De Hostel</option>
+			                  <option>Vivekananda Hostel</option>
+			                  <option>Vishwakarma Hostel</option>
+			                  <option>Gandhi Smriti Mahilla Hostel</option>
+			                  <option>Vishveshwaraiyya  Hostel</option>
+			                  <option>SN Bose Hostel</option>
+			                  <option>Aryabhatta Hostel</option>
+			                  <option>Ramanujan Hostel</option>
+			                </select>
+			              </div>
+    				</div>
+		              <center><button type="submit" class="btn btn-primary">Submit</button></center>
+
+          			</form> 
+	  			</div>
+
+	  		</div>
+	<div class="col-sm-2"></div>
+</div>
+{% endblock %}

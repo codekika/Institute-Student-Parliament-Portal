@@ -1,0 +1,21 @@
+create database parliament;
+use parliament;		
+create table student(rollno int primary key not null, firstname char(255) not null, lastname char(255) not null , phoneno int not null, year int not null , department char(255) not null, hostel char(255) not null, email char(255) not null ,password char(255) not null);
+create table grievance(id int primary key not null auto_increment, committee char(255), data text,filer int, foreign key (filer) references student (rollno) );
+create table suggestion(id int primary key not null auto_increment, committee char(255), data text,filer int, foreign key (filer) references student (rollno) );
+create table polls(id int primary key not null auto_increment, committee char(255),description text);
+create table polloption(id int primary key not null auto_increment, answer text,votes int, pollid int, foreign key (pollid) references polls (id) on delete cascade);
+create table pollers(id int primary key not null auto_increment, poller int, poll int, foreign key (poll) references polls (id) on delete cascade, foreign key (poller) references student (rollno) on delete cascade);
+create table election(id int primary key not null auto_increment, descr text, startdt date not null, enddt date not null);
+create table candidates(id int primary key not null auto_increment, name text, votes int default 0, cand_id int, electionid int, foreign key (cand_id) references student (rollno) on delete cascade,foreign key (electionid) references election (id) on delete cascade);
+create table voters(id int primary key not null auto_increment, voter int, electionid int,foreign key (electionid) references election (id) on delete cascade, foreign key (voter) references student (rollno) on delete cascade );
+create table notices(id int primary key not null auto_increment, notice text, committe char(255), notdate date ) ;
+
+
+insert into committee(name) values('Finance Committee');
+insert into committee(name) values('UG Academic Committee');
+insert into committee(name) values('PG Academic Committee');
+insert into committee(name) values('Hostel Committee');
+insert into committee(name) values('Security Committee');
+insert into committee(name) values('Web Committee');
+insert into committee(name) values('Emergency Committee');

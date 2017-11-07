@@ -1,0 +1,30 @@
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'^grievances$', views.grievances, name='grievances'),
+    url(r'^polls$', views.polls, name='polls'),
+    url(r'^suggestions$', views.suggestions, name='suggestions'),
+    url(r'^elections$', views.elections, name='elections'),
+    url(r'^signup$', views.signup, name='signup'),
+    url(r'^signup2$', views.signup2, name='signup2'),
+    url(r'^login$', views.login, name='login'),
+    url(r'^login2$', views.login2, name='login2'),
+    url(r'^logout$', views.logout, name='logout'),
+    url(r'^poll/(?P<pk>\d+)/$', views.poll, name='pollpage'),
+    url(r'^polldone/(?P<pk>\d+)/$', views.polldone, name='polldone'),
+    url(r'^elevote/(?P<pk>\d+)/$', views.elevote, name='elevote'),
+    url(r'^eledone/(?P<pk>\d+)/$', views.eledone, name='eledone'),
+    url(r'^nominate/(?P<pk>\d+)/$', views.nominate, name='nominate'),
+    url(r'^nominationdone/(?P<pk>\d+)/$', views.nominationdone, name='nominationdone'),
+    url(r'^eleresults/(?P<pk>\d+)/$', views.eleresults, name='eleresults'),
+    url(r'^eleresults/(?P<pk>\d+)/$', views.eleresults, name='eleresults'),
+    url(r'^profile$', views.profile, name='profile'),
+    url(r'^aboutus$', views.aboutus, name='aboutus'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
+    url(r'^signup3/(?P<pk>.*)/$', views.signup3, name='signup3'),
+    url(r'^update/(?P<pk>\d+)/$', views.update, name='update'),
+    url(r'^updatedprof/(?P<pk>\d+)/$', views.updatedprof, name='updatedprof'),
+]

@@ -1,0 +1,72 @@
+{% extends "administer/template.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+      <center>
+        <div class="card-block" >
+          <h3 class="card-title" style="color: white;"><center><u>Polls</u></center></h3>
+          <p style="color: white;"><center> {{messagee}}</center></p>
+          <ul class="nav nav-tabs">
+            <li><a data-toggle="tab" href="#present">Polls</a></li>
+            <li><a data-toggle="tab" href="#new">Add Polls</a></li>
+        </ul>
+        </div>
+        </center>
+        <div class="tab-content">
+          <div id="present" class="tab-pane fade in active">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name of the Poll</th>
+                  <th>Floated by Committee</th>
+                  <th>Results upto now</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for poll in polls %}
+                <tr>
+                  <td>{{poll.2}}</td>
+                  <td>{{poll.3}}</td>
+                  <td><a href="{% url 'pollresults' pk=poll.1 %}" class="btn btn-primary">Results</a></td>
+                  <td><a href="{% url 'deletepolls' pk=poll.1 %}" class="btn btn-primary">Delete</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+          </div>
+          <div id="new" class="tab-pane fade">
+            <form action="{% url 'addpolls' %}" method="POST">{% csrf_token %}
+                  <div class="form-group">
+                    <label for="desc">Description of the Poll</label>
+                    <input type="text" class="form-control" id="desc" name="desc" required>
+                  </div>
+                  <label for="committee">Committee of the poll</label>
+                  <select class="form-control" id="committee" name="committee" required>
+	                  <option>Finance Committee</option>
+	                  <option>UG Academic Committee</option>
+	                  <option>PG Academic Committee</option>
+	                  <option>Hostel Committee</option>
+	                  <option>Security Committee</option>
+	                  <option>Web Committee</option>
+	                  <option>Emergency Committee</option>
+	              </select>
+                  <div class="form-group">
+                    <label for="desc">Required option 1</label>
+                    <input type="text" class="form-control" id="option1" name="option1" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="desc">Required option 2</label>
+                    <input type="text" class="form-control" id="option2" name="option2" required>
+                  </div>
+                  <center><button type="submit" class="btn btn-primary">Add Extra Option or Finish the poll</button></center>
+                </form> 
+          </div>
+
+        </div>
+  <div class="col-sm-2"></div>
+</div>
+{% endblock %}

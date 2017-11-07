@@ -1,0 +1,13 @@
+create database parliament;
+use parliament;
+create table committee( id int primary key not null auto_increment, name char(255) not null ) 		
+create table student(rollno int primary key not null, firstname char(255) not null, lastname char(255) not null , phoneno int not null, year int not null , department char(255) not null, hostel char(255) not null, email char(255) not null ,password char(255) not null);
+create table grievance(id int primary key not null auto_increment, committee int not null, data text  not null,filer int  not null, foreign key (filer) references student (rollno) on delete cascade,foreign key (committee) references committee (id) on delete cascade );
+create table suggestion(id int primary key not null auto_increment, committee int not null, data text  not null,filer int  not null, foreign key (filer) references student (rollno), foreign key (filer) references student (rollno) on delete cascade, foreign key (committee) references committee (id) on delete cascade );
+create table polls(id int primary key not null auto_increment , committee int not null ,description text  not null, foreign key (committee) references committee (id));
+create table polloption(id int primary key not null auto_increment, answer text  not null,votes int  not null, pollid int  not null, foreign key (pollid) references polls (id) on delete cascade);
+create table pollers(id int primary key not null auto_increment, poller int  not null, poll int  not null, foreign key (poll) references polls (id) on delete cascade, foreign key (poller) references student (rollno) on delete cascade);
+create table election(id int primary key not null auto_increment, descr text  not null, startdt date not null, enddt date not null);
+create table candidates(id int primary key not null auto_increment, name text  not null, votes int default 0  not null, cand_id int  not null, electionid int  not null, foreign key (cand_id) references student (rollno) on delete cascade,foreign key (electionid) references election (id) on delete cascade);
+create table voters(id int primary key not null auto_increment, voter int  not null, electionid int  not null,foreign key (electionid) references election (id) on delete cascade, foreign key (voter) references student (rollno) on delete cascade );
+create table notices(id int primary key not null auto_increment, notice text  not null, committe int  not null, notdate date  not null, foreign key (committe) references committee (id));

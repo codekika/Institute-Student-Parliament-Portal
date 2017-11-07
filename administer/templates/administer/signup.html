@@ -1,0 +1,59 @@
+{% extends 'blog/template.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6" >
+    <div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+        <div class="card-block" >
+          <p style="color: white;"><center> {{messagee}}</center></p>
+          <h3 class="card-title" style="color: white;"><center><u>Signup</u></center></h3>
+          <p class="card-text" style="color: white;"><ol style="color: white;">
+            <form action="/signup" method="POST">{% csrf_token %}
+              <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input type="text" class="form-control" id="fname" name="fname" required>
+              </div>
+              <div class="form-group">
+                <label for="sname">Second Name:</label>
+                <input type="text" class="form-control" id="sname" name="sname" required>
+              </div>
+              <div class="form-group">
+                <label for="rno">Roll No</label>
+                <input type="number" class="form-control" id="rno" name="rno" required>
+              </div>
+              <div class="form-group">
+                <label for="year">Year</label>
+                <input type="number" class="form-control" id="year" name="year" required>
+              </div>
+              <div class="form-group">
+                <label for="dept">Department</label>
+                <input type="text" class="form-control" id="dept" name="dept" required>
+              </div>
+              <div class="form-group">
+                <label for="hostel">Hostel</label>
+                <input type="text" class="form-control" id="hostel" name="hostel" required>
+              </div>
+              <div class="form-group">
+                <label for="phoneno">Phone No</label>
+                <input type="number" class="form-control" id="pno" name="pno" required>
+              </div>
+              <div class="form-group">
+                <label for="usr">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password</label>
+                <input type="password" class="form-control" id="pwd" name="pwd" required>
+              </div>
+
+              <center><button type="submit" class="btn btn-primary">Submit</button></center>
+          </form> 
+          </p>
+        </div>
+    </div>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "administer/template.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+      <center>
+      <div class="card-block" >
+          <h3 class="card-title" style="color: white;"><center><u>Grievances</u></center></h3>
+        </div>
+        </center>
+        <div class="card block">
+      <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name of the committee addressed to</th>
+              <th>Grievance</th>
+              <th>Submitted By</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for poll in grievances %}
+            <tr>  
+                <td>{{poll.4}}</td>
+                <td>{{poll.2}}</td>
+                <td>{{poll.3}}</td>
+                <td><a href="{% url 'delete1234' pk=poll.1 %}" class="btn btn-primary">Delete</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+      </div>
+  </div>      
+  <div class="col-sm-2"></div>
+</div>
+{% endblock %}

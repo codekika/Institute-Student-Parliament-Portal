@@ -1,0 +1,57 @@
+{% extends "blog/template.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-8">
+		<div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+			
+			<center>
+			 <p style="color: white;"><center> {{messagee}}</center></p>
+			<div class="card-block" >
+    			<h3 class="card-title" style="color: white;"><center><u>Profile</u></center></h3>
+  			</div>
+  			</center>
+  			<div class="card block">
+			<table class="table table-bordered">
+			    <tbody>
+			      <tr>
+		      		<td>Roll No:</td>
+		      		<td>{{profile.0}}</td>
+			      </tr>
+			      <tr>
+		      		<td>First Name:</td>
+		      		<td>{{profile.1}}</td>
+			      </tr>
+			      <tr>
+		      		<td>Second Name:</td>
+		      		<td>{{profile.2}}</td>
+			      </tr>
+			      <tr>
+		      		<td>Phone No:</td>
+		      		<td>{{profile.3}}</td>
+			      </tr>
+			      <tr>
+		      		<td>Year:</td>
+		      		<td>{{profile.4}}</td>
+			      </tr>
+			      <tr>
+		      		<td>Department:</td>
+		      		<td>{{profile.5}}</td>
+			      </tr>
+			      <tr>
+		      		<td>Hostel:</td>
+		      		<td>{{profile.6}}</td>
+			      </tr>
+			      <tr>
+		      		<td>Email:</td>
+		      		<td>{{profile.7}}</td>
+			      </tr>
+			    </tbody>
+			</table>
+			</div>
+			<center><a href="{% url 'update' pk=profile.0 %}" class="btn btn-primary">Update Profile</a></center>
+	</div> 			
+	<div class="col-sm-2"></div>
+</div>
+{% endblock %}

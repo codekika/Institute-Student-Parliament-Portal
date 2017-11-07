@@ -1,0 +1,41 @@
+{% extends "blog/template.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6" >
+    <div class="card card" style="border: 1px solid white;padding: 10px;box-sizing: border-box;background:rgba(10,10,10,0.3);box-shadow: 5px 10px 12px black;border-radius: 5px;">
+        <p style="color: white;"><center> {{messagee}}</center></p>
+        <div class="card-block" >
+          <h3 class="card-title" style="color: white;"><center><u>Suggestions</u></center></h3>
+          <p class="card-text" style="color: white;"><ol style="color: white;">
+            <form class="form" action="/suggestions" method="POST">{% csrf_token %}
+              <div class="form-group">
+                <label for="committee">Committee to which the suggestion is addressed:</label>
+                <select class="form-control" id="committee" name="committee" required>
+                  <option>Finance Committee</option>
+                  <option>UG Academic Committee</option>
+                  <option>PG Academic Committee</option>
+                  <option>Hostel Committee</option>
+                  <option>Security Committee</option>
+                  <option>Web Committee</option>
+                  <option>Emergency Committee</option>
+                </select>
+              </div>
+            <div class="form-group">
+                <label for="pwd">Suggestion</label>
+                  <textarea rows="5" cols="32" class="form-control" rows="5" id="comment" name="comment" required></textarea>
+                </div>
+                <br>
+                <br>
+              <center><button type="submit" class="btn btn-primary">Submit Suggestion</button></center>
+          </form> 
+          </p>
+        </div>
+    </div>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+{% endblock %}
+
